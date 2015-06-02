@@ -26,10 +26,13 @@ from distutils.core import setup
 
 setup(
     name='odoo-sphinx-autodoc',
-    version='0.3.0',
+    version='0.3.1',
     author='Sylvain Garancher',
     author_email='sylvain.garancher@syleam.fr',
-    packages=['sphinxodoo'],
+    packages=[
+        'sphinxodoo',
+        'sphinxodoo.ext',
+    ],
     package_data={},
     scripts=[],
     #url='',
