@@ -12,7 +12,7 @@ def setup(app):
     """
     app.add_config_value('sphinxodoo_addons', [], True)
     app.add_config_value('sphinxodoo_root_path', '', True)
-    app.add_config_value('sphinxodoo_addons_path', '', True)
+    app.add_config_value('sphinxodoo_addons_path', [], True)
     app.connect('builder-inited', load_modules)
 
     return {'version': '0.1.0'}
@@ -32,7 +32,7 @@ def load_modules(app):
                     '__doc__', info['description'])
 
     addons = app.env.config.sphinxodoo_addons
-    addons_path = app.env.config.sphinxodoo_addons_path
+    addons_path = ','.join(app.env.config.sphinxodoo_addons_path)
 
     if(app.env.config.sphinxodoo_root_path):
         sys.path.append(app.env.config.sphinxodoo_root_path)
