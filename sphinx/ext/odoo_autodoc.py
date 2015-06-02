@@ -15,7 +15,7 @@ def setup(app):
     app.add_config_value('sphinxodoo_addons_path', [], True)
     app.connect('builder-inited', load_modules)
 
-    return {'version': '0.1.0'}
+    return {'version': '0.2.0'}
 
 
 def load_modules(app):

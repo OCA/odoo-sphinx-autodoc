@@ -26,7 +26,7 @@ from distutils.core import setup
 
 setup(
     name='odoo-sphinx-autodoc',
-    version='0.1.0',
+    version='0.2.0',
     author='Sylvain Garancher',
     author_email='sylvain.garancher@syleam.fr',
     packages=['sphinx.ext'],
