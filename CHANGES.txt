@@ -1,3 +1,6 @@
+v0.3.0, 2015-06-02
+ * Changed name of the package
+
 v0.2.0, 2015-06-02
  * Changed sphinxodoo_addons_path option from string to list type
 
