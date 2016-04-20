@@ -23,8 +23,12 @@ def load_modules(app):
         for module_name in addons:
             info = openerp.modules.module \
                 .load_information_from_description_file(module_name)
-            f, path, descr = imp.find_module(
-                module_name, openerp.tools.config['addons_path'].split(','))
+            try:
+                f, path, descr = imp.find_module(
+                    module_name, openerp.tools.config['addons_path'].split(','))
+            except ImportError:
+                # skip non module directories
+                continue
             mod = imp.load_module(
                 'openerp.addons.%s' % module_name, f, path, descr)
             setattr(openerp.addons, module_name, mod)
