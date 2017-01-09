@@ -29,8 +29,12 @@ def load_modules(app):
             except ImportError:
                 # skip non module directories
                 continue
+            if use_odoo_namespace:
+                namespace = 'odoo'
+            else:
+                namespace = 'openerp'
             mod = imp.load_module(
-                'openerp.addons.%s' % module_name, f, path, descr)
+                '%s.addons.%s' % (namespace, module_name), f, path, descr)
             setattr(openerp.addons, module_name, mod)
             setattr(getattr(openerp.addons, module_name),
                     '__doc__', info['description'])
@@ -40,7 +44,13 @@ def load_modules(app):
 
     if(app.env.config.sphinxodoo_root_path):
         sys.path.append(app.env.config.sphinxodoo_root_path)
-    import openerp
+    use_odoo_namespace = False
+    try:
+        import openerp
+    except ImportError:
+        import odoo
+        openerp = odoo
+        use_odoo_namespace = True
 
     if not addons_path:
         addons_path = os.environ.get('ODOO_ADDONS_PATH', '')
